@@ -25,18 +25,14 @@ public class Floor extends AbstractAisleComponents {
      */
     @Override
     protected int calculateEmptyLocations() {
-        Integer sumOfEmptyLocations = slots.stream().
-                mapToInt(o -> o.calculateEmptyLocations()).sum();
-
-        return sumOfEmptyLocations;
+        return slots.stream().
+                mapToInt(Slot::calculateEmptyLocations).sum();
     }
 
     @Override
     protected int calculateLocationCapacity() {
-        Integer sumLocationsCapacity = slots.stream().
-                mapToInt(o -> o.calculateLocationCapacity()).sum();
-
-        return sumLocationsCapacity;
+        return slots.stream().
+                mapToInt(Slot::calculateLocationCapacity).sum();
     }
 
     @Override
