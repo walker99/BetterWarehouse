@@ -23,32 +23,7 @@ public class Warehouse {
      */
     public void createAisle(String name, int numberOfRacks, int numberOfLevels, int numberOfSlots, int numberOfLocations)
     {
-        ArrayList<Rack> racks = new ArrayList<>(numberOfRacks);
-        for (int i = 0; i < numberOfRacks; i++)
-        {
-            ArrayList<Floor> levels = new ArrayList<>(numberOfLevels);
-            for (int j = 0; j < numberOfLevels; j++)
-            {
-                ArrayList<Slot> slots = new ArrayList<>(numberOfSlots);
-                for (int k = 0; k < numberOfSlots; k++)
-                {
-                    ArrayList<Location> locations = new ArrayList<>(numberOfLocations);
-                    for (int l = 0; l < numberOfLocations; l++)
-                    {
-                        String locationName = "L" + l + "-S" + k;
-                        locations.add(new Location(locationName));
-                    }
-                    String slotName = "S" + k + "-F" + j;
-                    slots.add(new Slot(slotName, locations));
-                }
-                String levelName = "F" + j + "-R" + i;
-                levels.add(new Floor(levelName, slots));
-            }
-            String rackName = "R" + i + "-" + name;
-            racks.add(new Rack(rackName, levels));
-        }
-        Aisle myAisle = new Aisle(name, racks);
-        aisles.add(myAisle);
+        aisles.add(Aisle.RegularAisle(numberOfSlots, numberOfLevels, numberOfLocations,numberOfRacks, name));
     }
 
     public String getName() {

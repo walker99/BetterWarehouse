@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WarehouseTest {
@@ -104,10 +102,14 @@ class WarehouseTest {
     }
 
     @Test
-    void testGetName_for_most_elements() {
+    void testGetName_warehouse_std() {
         // Warehouse
         assertEquals("Warehouse to Test", warehouse.getName());
-        // Aisle
+    }
+
+    @Test
+    void testGetName_for_most_elements() {
+         // Aisle
         assertEquals("A1", warehouse.getAisles().get(0).getName());
         // Rack
         assertEquals("R0-A1", warehouse.getAisles().get(0).getRacks().get(0).getName());

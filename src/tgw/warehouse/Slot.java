@@ -1,5 +1,6 @@
 package tgw.warehouse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +20,19 @@ public class Slot extends AbstractAisleComponents {
     public Slot(String name, List<Location> locations) {
         this.name = name;
         this.locations = locations;
+    }
+
+    public static Slot MultiSlot(int xCoordinate, int yCoordinate, int slotDepth) {
+        List<Location> locations = new ArrayList<>(slotDepth);
+        for (int i = 0; i < slotDepth; i++)
+        {
+            String locationName = "L" + i + "-S" + xCoordinate;
+            locations.add(new Location(locationName));
+        }
+
+        String name = "S" + xCoordinate + "-F" + yCoordinate;
+
+        return new Slot(name, locations);
     }
 
     /**

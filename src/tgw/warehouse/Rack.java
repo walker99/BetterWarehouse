@@ -1,5 +1,6 @@
 package tgw.warehouse;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rack extends AbstractAisleComponents{
@@ -9,6 +10,18 @@ public class Rack extends AbstractAisleComponents{
     public Rack(String name, List<Floor> floors) {
         this.name = name;
         this.floors = floors;
+    }
+
+    public static Rack RegularRack(int xCoordinate, int yCoordinate, int slotDepth, int rackNumber, String aisleName) {
+        List<Floor> floors = new ArrayList<>(yCoordinate);
+        for (int i = 0; i < yCoordinate; i++)
+        {
+            floors.add(Floor.RegularFloor(xCoordinate, i, slotDepth, rackNumber));
+        }
+
+        String rackName = "R" + rackNumber + "-" + aisleName;
+
+        return new Rack(rackName, floors);
     }
 
     public String getName() {
