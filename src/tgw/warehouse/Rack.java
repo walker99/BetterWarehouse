@@ -3,7 +3,7 @@ package tgw.warehouse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rack {
+public class Rack extends AbstractAisleComponents{
     private String name;
     private List<Floor> floors;
 
@@ -20,39 +20,6 @@ public class Rack {
         return floors;
     }
 
-    public double getCurrentOccupancyRate()
-    {
-        int sum = 0;
-        int noOfFloors = floors.size();
-        // all locations = noOfFloors*noOfSlots*noOfLocations
-        int capacity = noOfFloors * floors.get(0).getSlots().size()*floors.get(0).getSlots().get(0).getLocations().size();
-
-        for (Floor floor:floors){
-            for (Slot slot:floor.getSlots())
-            {
-                for (Location location:slot.getLocations())
-                {
-                    if (location.getState() == LocationState.BLOCKED)
-                    {
-                        capacity--;
-                    }
-                }
-            }
-        }
-
-        for (Floor floor:floors) {
-            for (Slot slot : floor.getSlots()) {
-                for (Location location : slot.getLocations()) {
-                    if (location.getState() == LocationState.EMPTY) {
-                        sum++;
-                    }
-                }
-            }
-        }
-
-        return 1.0 - (double) sum/(double) capacity;
-    }
-
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
@@ -64,5 +31,25 @@ public class Rack {
         }
 
         return result.toString();
+    }
+
+    /**
+     * Loop over all slots in a floor
+     * @return
+     */
+    @Override
+    protected int calculateEmptyLocations() {
+        Integer sumOfEmptyLocations = floors.stream().
+                mapToInt(o -> o.calculateEmptyLocations()).sum();
+
+        return sumOfEmptyLocations;
+    }
+
+    @Override
+    protected int calculateLocationCapacity() {
+        Integer sumLocationsCapacity = floors.stream().
+                mapToInt(o -> o.calculateLocationCapacity()).sum();
+
+        return sumLocationsCapacity;
     }
 }
