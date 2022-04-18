@@ -2,7 +2,7 @@ package tgw.warehouse;
 
 import java.util.List;
 
-public class Aisle {
+public class Aisle extends AbstractAisleComponents {
     private String name;
     private List<Rack> racks;
 
@@ -19,44 +19,20 @@ public class Aisle {
         return racks;
     }
 
-    public double getCurrentOccupancyRate()
-    {
-        int sum = 0;
-        int noOfRacks = racks.size();
-        // all locations = noOfRacks*noOfFloors*noOfSlots*noOfLocations
-        int capacity = noOfRacks * racks.get(0).getFloors().size()*racks.get(0).getFloors().get(0).getSlots().size()*racks.get(0).getFloors().get(0).getSlots().get(0).getLocations().size();
+    /**
+     * Loop over all floors in a floor
+     * @return
+     */
+    @Override
+    protected int calculateEmptyLocations() {
+        return racks.stream().
+                mapToInt(Rack::calculateEmptyLocations).sum();
+    }
 
-        for (Rack rack:racks)
-        {
-            for (Floor floor:rack.getFloors())
-            {
-                for (Slot slot:floor.getSlots())
-                {
-                    for (Location location:slot.getLocations())
-                    {
-                        if (location.getState() == LocationState.BLOCKED)
-                        {
-                            capacity--;
-                        }
-                    }
-                }
-            }
-        }
-
-        for (Rack rack:racks)
-        {
-            for (Floor floor:rack.getFloors()) {
-                for (Slot slot : floor.getSlots()) {
-                    for (Location location : slot.getLocations()) {
-                        if (location.getState() == LocationState.EMPTY) {
-                            sum++;
-                        }
-                    }
-                }
-            }
-        }
-
-        return 1.0 - (double) sum/(double) capacity;
+    @Override
+    protected int calculateLocationCapacity() {
+        return racks.stream().
+                mapToInt(Rack::calculateLocationCapacity).sum();
     }
 
     @Override

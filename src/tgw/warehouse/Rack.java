@@ -34,7 +34,7 @@ public class Rack extends AbstractAisleComponents{
     }
 
     /**
-     * Loop over all slots in a floor
+     * Loop over all floors in a floor
      * @return
      */
     @Override
