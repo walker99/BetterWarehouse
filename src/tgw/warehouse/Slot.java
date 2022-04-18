@@ -6,7 +6,7 @@ import java.util.List;
  * Slots are parts of floors (see it as the x-coordinate)
  * In a slot you find locations (see it as the z-coordinate)
  */
-public class Slot {
+public class Slot extends AbstractAisleComponents {
     private String name;
     private List<Location> locations;
 
@@ -37,17 +37,26 @@ public class Slot {
         return locations;
     }
 
-    /**
-     * Calculates the occupancy rat at the current time
-     * occupancy rat = 1 - occupied locations/available locations
-     * @return occupancy rate
-     */
-    public double getCurrentOccupancyRate()
+    protected double getEmptyLocations()
     {
-        // initialize to get the correct sum
-        int sum = 0;
-        // capacity is location size
-        int capacity = locations.size();
+        int sumEmptyLocations = 0;
+
+        // loop through all locations
+        for (Location location:locations)
+        {
+            // if a location is occupied sum it up!
+            if (location.getState() == LocationState.EMPTY)
+            {
+                sumEmptyLocations++;
+            }
+        }
+
+        return sumEmptyLocations;
+    }
+
+    protected double getLocationCapacity()
+    {
+        int locationCapacity = locations.size();
 
         // loop through all locations
         for (Location location:locations)
@@ -55,23 +64,11 @@ public class Slot {
             // lower the capacity if a location is blocked
             if (location.getState() == LocationState.BLOCKED)
             {
-                capacity--;
+                locationCapacity--;
             }
         }
 
-        // loop again through all locations
-        for (Location location:locations)
-        {
-            // if a location is occupied sum it up!
-            if (location.getState() == LocationState.OCCUPIED)
-            {
-                sum++;
-            }
-        }
-
-        // calculate the capacity
-        // todo: think about the situation if all locations are blocked!
-        return (double) sum/ (double) capacity;
+        return locationCapacity;
     }
 
     /**
