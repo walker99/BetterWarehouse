@@ -1,6 +1,5 @@
 package tgw.warehouse;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Rack extends AbstractAisleComponents{
@@ -39,17 +38,13 @@ public class Rack extends AbstractAisleComponents{
      */
     @Override
     protected int calculateEmptyLocations() {
-        Integer sumOfEmptyLocations = floors.stream().
-                mapToInt(o -> o.calculateEmptyLocations()).sum();
-
-        return sumOfEmptyLocations;
+        return floors.stream().
+                mapToInt(Floor::calculateEmptyLocations).sum();
     }
 
     @Override
     protected int calculateLocationCapacity() {
-        Integer sumLocationsCapacity = floors.stream().
-                mapToInt(o -> o.calculateLocationCapacity()).sum();
-
-        return sumLocationsCapacity;
+        return floors.stream().
+                mapToInt(Floor::calculateLocationCapacity).sum();
     }
 }
