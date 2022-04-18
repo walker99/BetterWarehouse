@@ -37,7 +37,7 @@ public class Slot extends AbstractAisleComponents {
         return locations;
     }
 
-    protected double calculateEmptyLocations()
+    protected int calculateEmptyLocations()
     {
         int sumEmptyLocations = (int) locations.stream()
                                     .filter(b -> b.isLocationEmpty())
@@ -45,7 +45,7 @@ public class Slot extends AbstractAisleComponents {
         return sumEmptyLocations;
     }
 
-    protected double calculateLocationCapacity()
+    protected int calculateLocationCapacity()
     {
         int locationCapacity = locations.size();
         int sumBlockedLocations = (int) locations.stream()

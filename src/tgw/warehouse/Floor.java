@@ -2,7 +2,7 @@ package tgw.warehouse;
 
 import java.util.List;
 
-public class Floor {
+public class Floor extends AbstractAisleComponents {
     private String name;
     private List<Slot> slots;
 
@@ -19,36 +19,24 @@ public class Floor {
         return slots;
     }
 
-    public double getCurrentOccupancyRate()
-    {
-        int sum = 0;
-        int noOfSlots = slots.size();
-        // noOfLocations = slots.get(0).getLocations().size()
-        int capacity = slots.get(0).getLocations().size() * noOfSlots;
+    /**
+     * Loop over all slots in a floor
+     * @return
+     */
+    @Override
+    protected int calculateEmptyLocations() {
+        Integer sumOfEmptyLocations = slots.stream().
+                mapToInt(o -> o.calculateEmptyLocations()).sum();
 
-        for (Slot slot:slots)
-        {
-            for (Location location:slot.getLocations())
-            {
-                if (location.getState() == LocationState.BLOCKED)
-                {
-                    capacity--;
-                }
-            }
-        }
+        return sumOfEmptyLocations;
+    }
 
-        for (Slot slot:slots)
-        {
-            for (Location location:slot.getLocations())
-            {
-                if (location.getState() == LocationState.EMPTY)
-                {
-                    sum++;
-                }
-            }
-        }
+    @Override
+    protected int calculateLocationCapacity() {
+        Integer sumLocationsCapacity = slots.stream().
+                mapToInt(o -> o.calculateLocationCapacity()).sum();
 
-        return 1.0 - (double) sum/(double) capacity;
+        return sumLocationsCapacity;
     }
 
     @Override
