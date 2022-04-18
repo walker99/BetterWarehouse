@@ -2,10 +2,10 @@ package tgw.warehouse;
 
 public abstract class AbstractAisleComponents {
     public double getCurrentOccupancyRate() {
-        return 1.0 - getEmptyLocations()/getLocationCapacity();
+        return 1.0 - calculateEmptyLocations()/ calculateLocationCapacity();
     }
 
-    protected abstract double getEmptyLocations();
+    protected abstract double calculateEmptyLocations();
     
-    protected abstract double getLocationCapacity();
+    protected abstract double calculateLocationCapacity();
 }

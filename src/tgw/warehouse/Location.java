@@ -45,6 +45,16 @@ public class Location {
         return tempLc;
     }
 
+    protected boolean isLocationEmpty()
+    {
+        return state == LocationState.EMPTY;
+    }
+
+    protected boolean isLocationBLocked()
+    {
+        return state == LocationState.BLOCKED;
+    }
+
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();

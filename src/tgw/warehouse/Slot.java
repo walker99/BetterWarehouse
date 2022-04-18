@@ -37,38 +37,22 @@ public class Slot extends AbstractAisleComponents {
         return locations;
     }
 
-    protected double getEmptyLocations()
+    protected double calculateEmptyLocations()
     {
-        int sumEmptyLocations = 0;
-
-        // loop through all locations
-        for (Location location:locations)
-        {
-            // if a location is occupied sum it up!
-            if (location.getState() == LocationState.EMPTY)
-            {
-                sumEmptyLocations++;
-            }
-        }
-
+        int sumEmptyLocations = (int) locations.stream()
+                                    .filter(b -> b.isLocationEmpty())
+                                    .count();
         return sumEmptyLocations;
     }
 
-    protected double getLocationCapacity()
+    protected double calculateLocationCapacity()
     {
         int locationCapacity = locations.size();
+        int sumBlockedLocations = (int) locations.stream()
+                .filter(b -> b.isLocationBLocked())
+                .count();
 
-        // loop through all locations
-        for (Location location:locations)
-        {
-            // lower the capacity if a location is blocked
-            if (location.getState() == LocationState.BLOCKED)
-            {
-                locationCapacity--;
-            }
-        }
-
-        return locationCapacity;
+        return locationCapacity - sumBlockedLocations;
     }
 
     /**
