@@ -1,0 +1,12 @@
+
+a
+java:S1192}"FDefine a constant instead of duplicating this literal "L1-S1" 3 times.(Ìˆ‚•şÿÿÿÿ
+f	java:S116"QRename this field "LcList" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ€ô
+c	java:S100:"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(­¸
+c	java:S100i"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¸Ê¸¬
+o	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¹õƒ¸üÿÿÿÿ8Ñ„óîƒ0
+d	java:S100ƒ"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(”ŒŞ’
+d	java:S100”"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(«äªî
+i	java:S100¯"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àßòáûÿÿÿÿ
+F
+java:S5960<"+Remove this assertion from production code.(©Óûÿÿÿÿ

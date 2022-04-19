@@ -1,0 +1,26 @@
+
+e
+java:S1192("ODefine a constant instead of duplicating this literal "occupancyRate " 3 times.(–û•‡
+R
+java:S1854,"7Remove this useless assignment to local variable "lc3".(ŞÙÙĞúÿÿÿÿ
+L
+java:S1854+"7Remove this useless assignment to local variable "lc2".(Ü·„
+
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¶¬±
+N	java:S106"9Replace this use of System.out or System.err by a logger.(§û¯‹
+M	java:S106"9Replace this use of System.out or System.err by a logger.(¬ÁóP
+N	java:S106"9Replace this use of System.out or System.err by a logger.(…¤À
+N	java:S106"9Replace this use of System.out or System.err by a logger.(¸˜üÚ
+S	java:S106 "9Replace this use of System.out or System.err by a logger.(×áö”ùÿÿÿÿ
+N	java:S106("9Replace this use of System.out or System.err by a logger.(–û•‡
+=
+java:S1481+"(Remove this unused "lc2" local variable.(Ü·„
+
+C
+java:S1481,"(Remove this unused "lc3" local variable.(ŞÙÙĞúÿÿÿÿ
+N	java:S106/"9Replace this use of System.out or System.err by a logger.(–û•‡
+N	java:S1063"9Replace this use of System.out or System.err by a logger.(ÊÆ¥÷
+P
+java:S1128".Remove this unused import 'java.time.Instant'.(Â‚éñÿÿÿÿÿ8’¹·îƒ0
+J
+java:S1128"-Remove this unused import 'java.time.ZoneId'.( Æ½“8’¹·îƒ0
